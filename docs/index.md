@@ -1,0 +1,1 @@
+# wagtailfrontendcache_uwsgi
