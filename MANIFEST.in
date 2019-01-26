@@ -1,0 +1,9 @@
+global-exclude __pycache__
+global-exclude .env
+global-exclude *.pyc
+global-exclude *.zip *.gz
+
+graft wagtailfrontendcache_uwsgi
+
+prune .venv
+prune .git

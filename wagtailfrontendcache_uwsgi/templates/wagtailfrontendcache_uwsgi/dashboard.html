@@ -1,0 +1,32 @@
+{% extends "wagtailadmin/base.html" %}
+{% load i18n %}
+
+{% block titletag %}Flush Cache{% endblock %}
+
+{% block content %}
+{% include "wagtailadmin/shared/header.html" with title="Cache" icon="cog" %}
+<div class="nice-padding">
+  <section>
+    <form action="flush/" method="post">
+      {% csrf_token %}
+      <ul class="fields">
+        <li class="required">
+          <div class="field char_field text_input">
+            <div class="field-content">
+              <div class="input">
+                <label>
+                  <input id="id_confirm" name="confirm" type="checkbox" required>
+                  Confirm
+                </label>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <input type="submit" class="button" name="clear_uwsgi_cache_form" value="{% trans 'Clear uWSGI cache' %}">
+        </li>
+      </ul>
+    </form>
+  </section>
+</div>
+{% endblock %}
