@@ -1,9 +1,11 @@
-global-exclude __pycache__
-global-exclude .env
-global-exclude *.pyc
-global-exclude *.zip *.gz
+include LICENSE *.md
 
 graft wagtailfrontendcache_uwsgi
+
+global-exclude __pycache__
+global-exclude .env
+global-exclude *.py[co]
+global-exclude *.zip *.gz
 
 prune .venv
 prune .git
