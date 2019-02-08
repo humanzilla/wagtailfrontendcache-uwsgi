@@ -26,7 +26,8 @@ class UwsgiModule:
 
     def cache_clear(self, cache: Optional[str]): ...
 
-    def cache_keys(self, cache: Optional[str]): ...
+    def cache_keys(self, cache: Optional[str]):
+        return []
 
 try:
     import uwsgi

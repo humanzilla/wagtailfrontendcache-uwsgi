@@ -18,9 +18,6 @@ class UWSGIBackend(BaseBackend):
             )
 
     def get_cache_keys(self) -> Iterable[str]:
-        cache_keys = uwsgi.cache_keys(self.cache_name)
-        if not cache_keys:
-            return []
         return map(lambda key: key.decode(), uwsgi.cache_keys(self.cache_name))
 
     def purge(self, url):

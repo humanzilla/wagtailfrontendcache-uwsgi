@@ -33,5 +33,5 @@ def flush_cache(request):
         return HttpResponse(data=json.dumps({"ok": True}), status=200)
 
     return HttpResponse(
-        data=json.dumps({"ok": False, "errors": form.errors}), status=400
+        content=json.dumps({"ok": False, "errors": form.errors}), status=400
     )
