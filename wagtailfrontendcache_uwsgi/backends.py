@@ -19,5 +19,11 @@ class UWSGIBackend(BaseBackend):
     def purge(self, url):
         url_parsed = urlparse(url)
         uwsgi.cache_del(
+            f"http://127.0.0.1:8000{url_parsed.path}", self.cache_name
+        )
+        uwsgi.cache_del(
+            f"http://localhost:8000{url_parsed.path}", self.cache_name
+        )
+        uwsgi.cache_del(
             f"{url_parsed.netloc}{url_parsed.path}", self.cache_name
         )

@@ -1,11 +1,14 @@
+import logging
 from typing import Optional
+
+logger = logging.getLogger('django')
 
 
 class UwsgiModule:
-    numproc: int # The number of processes/workers currently running.
-    started_on: int # The Unix timestamp of uWSGI’s startup.
-    opt: dict # The current configuration options, including any custom placeholders.
-    magic_table: dict # The magic table of configuration placeholders.
+    numproc: int  # The number of processes/workers currently running.
+    started_on: int  # The Unix timestamp of uWSGI’s startup.
+    opt: dict  # The current configuration options, including any custom placeholders.
+    magic_table: dict  # The magic table of configuration placeholders.
 
     def get_option(self, name: str): ...
 
@@ -24,7 +27,4 @@ class UwsgiModule:
     def cache_clear(self, cache: Optional[str]): ...
 
 
-try:
-    import uwsgi
-except ImportError:
-    uwsgi = UwsgiModule()
+import uwsgi
