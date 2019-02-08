@@ -26,5 +26,10 @@ class UwsgiModule:
 
     def cache_clear(self, cache: Optional[str]): ...
 
+    def cache_keys(self, cache: Optional[str]): ...
 
-import uwsgi
+try:
+    import uwsgi
+except ImportError:
+    uwsgi = UwsgiModule()
+    logger.warning("Using mock version for uwsgi python module.")

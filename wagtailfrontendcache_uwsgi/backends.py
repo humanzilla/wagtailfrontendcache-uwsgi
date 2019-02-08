@@ -1,3 +1,4 @@
+from typing import Iterable
 from urllib.parse import urlparse
 
 from django.core.exceptions import ImproperlyConfigured
@@ -15,6 +16,9 @@ class UWSGIBackend(BaseBackend):
                 "Missing CACHE_NAME value for backend. "
                 "Check your uWSGI to get the proper cache name."
             )
+
+    def get_cache_keys(self) -> Iterable[str]:
+        return map(lambda key: key.decode(), uwsgi.cache_keys(self.cache_name))
 
     def purge(self, url):
         url_parsed = urlparse(url)

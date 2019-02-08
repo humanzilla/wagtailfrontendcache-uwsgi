@@ -3,12 +3,18 @@ import json
 from django import forms
 from django.http import HttpResponse
 from django.views.generic import TemplateView
+from wagtail.contrib.frontend_cache.utils import get_backends
 
 from .compat import uwsgi
 
 
 class DashboardView(TemplateView):
     template_name = "wagtailfrontendcache_uwsgi/dashboard.html"
+
+    def get_context_data(self, **kwargs):
+        uwsgi_backend = get_backends().get('uwsgi', None)
+        kwargs['cache_keys'] = uwsgi_backend.get_cache_keys() if uwsgi_backend else []
+        return super().get_context_data(**kwargs)
 
 
 class ConfirmForm(forms.Form):

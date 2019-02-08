@@ -7,6 +7,21 @@
 {% include "wagtailadmin/shared/header.html" with title="Cache" icon="cog" %}
 <div class="nice-padding">
   <section>
+    <h2>Cache Keys</h2>
+    <table>
+      <tbody>
+      {% for key in cache_keys %}
+      <tr>
+        <td>
+          {{ key }}
+        </td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </section>
+  <hr>
+  <section>
     <form action="flush/" method="post">
       {% csrf_token %}
       <ul class="fields">
